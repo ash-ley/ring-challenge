@@ -5,7 +5,7 @@ resource "aws_security_group" "ring_sg" {
     description = "Allow access to my servers"
     vpc_id = aws_vpc.main.id
 
-    #Karolina
+  #Karolina
   ingress {
     description      = "SSH from my mac"
     from_port        = 22
@@ -50,7 +50,7 @@ resource "aws_security_group" "ring_sg" {
     cidr_blocks      = ["72.74.153.243/32"]
   }
 
-  #PASCAL
+  #Pascal
   ingress {
     description      = "SSH from my mac"
     from_port        = 22
@@ -94,10 +94,6 @@ data "template_file" "user_data_public" {
     vars = {
         private_key = data.local_file.private_key.content
         private_ip1 = aws_instance.private_servers.*.private_ip[0]
-        private_ip2 = aws_instance.private_servers.*.private_ip[1]
-        private_ip3 = aws_instance.private_servers.*.private_ip[2]
-        private_ip4 = aws_instance.private_servers.*.private_ip[3]
-        private_ip5 = aws_instance.private_servers.*.private_ip[4]
     }
 }
 

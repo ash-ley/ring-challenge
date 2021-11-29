@@ -20,7 +20,12 @@ variable "keypair_name" {
   description = "The name of my keypair"
   type = string
 }
+variable "key_location" {
+  description = "The location of your private key"
+  type = string
+}
 variable "instance_count" {
   description = "Number of instances I want inside my private subnet"
+  type = string
   default = "5"
 }

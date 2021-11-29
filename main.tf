@@ -50,7 +50,7 @@ resource "aws_subnet" "public" {
   }
 }
 data "local_file" "private_key" {
-    filename = "/Users/ashley.ritchie/.ssh/ring-challenge.pem"
+    filename = var.key_location
 }
 data "local_file" "script" {
     filename = "${path.cwd}/script.sh"
