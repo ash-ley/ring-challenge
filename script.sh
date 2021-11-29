@@ -17,10 +17,9 @@ if test -f "\$FILE"; then
     	MYIP=\$(ifconfig eth0 | awk '\$1 == "inet" {print \$2}')
     	IP=\$(nmap --exclude \$MYIP -Pn -p22 --open \$MYIP-254 -oG - | awk '/Up\$/{print \$2}' | head -n 1)
 	if [ -z "\${IP}" ]; then
-		IP=\$(nmap --exclude \$MYIP -Pn -p22 --open 192.168.25.4-\$MYIP | awk 'Up\$/{print \$2}' | head -n 1)
+		IP=\$(nmap --exclude \$MYIP -Pn -p22 --open 192.168.25.4-254 -oG - | awk '/Up\$/{print \$2}' | head -n 1)
 	fi
     # send the file
-    scp -o StrictHostKeyChecking=no -i \$KEY \$FILE \$IP:\$FILE
+    scp -o StrictHostKeyChecking=no -i \$KEY \$FILE ec2-user@\$IP:\$FILE
 	#rm \$FILE
-	
 fi

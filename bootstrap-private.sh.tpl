@@ -12,5 +12,6 @@ EOT
 chown ec2-user:ec2-user /home/ec2-user/.ssh/id_rsa
 chmod 600 /home/ec2-user/.ssh/id_rsa
 
-(crontab -l ; echo "0 0/1 * 1/1 * ? * /bin/bash /home/ec2-user/script.sh") | crontab -
-echo "* * * * * root /bin/sh /home/root/script.sh"
+crontab -l > mycron
+echo "* * * * * /home/ec2-user/script.sh" >> mycron
+crontab mycron
