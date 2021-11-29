@@ -5,13 +5,59 @@ resource "aws_security_group" "ring_sg" {
     description = "Allow access to my servers"
     vpc_id = aws_vpc.main.id
 
-    ingress {
-    description      = "SSH from my macbook"
+    #Karolina
+  ingress {
+    description      = "SSH from my mac"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["31.205.63.101/32"]
+  }
+
+#Ashley
+  ingress {
+    description      = "SSH from my mac"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["86.21.150.205/32"]
+  }
+
+#Tahsin
+  ingress {
+    description      = "SSH from my mac"
     from_port        = 22
     to_port          = 22
     protocol         = "tcp"
     cidr_blocks      = ["81.108.153.97/32"]
-    }
+  }
+
+#Himat
+  ingress {
+    description      = "SSH from my mac"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["77.99.152.53/32"]
+  }
+
+  #Mia
+  ingress {
+    description      = "SSH from my mac"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["72.74.153.243/32"]
+  }
+
+  #PASCAL
+  ingress {
+    description      = "SSH from my mac"
+    from_port        = 22
+    to_port          = 22
+    protocol         = "tcp"
+    cidr_blocks      = ["92.239.22.191/32"]
+  }
 
     ingress {
         description      = "SSH from my VPC"
@@ -91,4 +137,7 @@ resource "aws_instance" "private_servers" {
     tags = {
         Name = "private-ring-${count.index + 1}"
     }
+    depends_on = [
+      aws_nat_gateway.nat
+    ]
 }
